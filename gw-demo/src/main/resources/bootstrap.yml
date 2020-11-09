@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: gateway-demo
+  cloud:
+    config:
+      # Enabled, then can have dynamic configuration to read server.
+      enabled: false

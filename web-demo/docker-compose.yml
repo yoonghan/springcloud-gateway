@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  web:
+    build: .
+    ports:
+      - "8081:8080"
+      - "8080:8080"
+      - "8082:8080"
+    volumes:
+      - ${PWD}/log:/log

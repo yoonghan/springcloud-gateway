@@ -1,0 +1,54 @@
+server:
+  port: 9000
+
+tgcs:
+  allowedips:
+    - 127.0.0.1
+    - localhost
+
+spring:
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: false
+        simple:
+          instances:
+            greetings-service:
+              - uri: http://raspberrypi:8080
+              - uri: http://raspberrypi:8081
+    loadbalancer:
+      configurations: health-check
+      cache:
+        enabled: false
+      health-check:
+        path:
+          default: /actuator/health
+        interval: 5000
+    gateway:
+      routes:
+      - id: api_routing
+        path: /api/v1/*
+        uri: lb://greetings-service
+        predicates:
+          - Method=GET,POST
+          - Path=/api/v1/**
+      - id: request_size_route
+        uri: lb://greetings-service
+        predicates:
+          - Path=/upload
+        filters:
+          - name: RequestSize
+            args:
+              maxSize: 5000
+      - id: socket_routing
+        uri: lb:ws://greetings-service
+        predicates:
+          - Path=/socket-io/**
+      - id: content_routing
+        path: /images/*
+        uri: https://www.flickr.com/photos
+        predicates:
+          - Method=GET
+          - Path=/images/**
+        add-to-simple-url-handler-mapping: true
