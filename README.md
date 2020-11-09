@@ -23,13 +23,16 @@ Gateway configuration takes these:
 *NOTES:* To change path for health-check modify spring.cloud.loadbalancer.health-check.path.default (or remove it)
 
 ## Test proved
-1. Load-balancing via health-check, if "spring.cloud.loadbalancer.configurations: health-check" and are based on 5 seconds interval with program path /status as check. If reverting to round-robing, remove "spring.cloud.loadbalancer.configurations" in application.yml. No Zuul is used.
+1. Load-balancing via health-check, if "spring.cloud.loadbalancer.configurations: health-check" and are based on 5 seconds interval with program path /status as check. If reverting to round-robing, remove "spring.cloud.loadbalancer.configurations" and "spring.cloud.loadbalancer.cache" in application.yml. No Zuul or Ribbon is used in this setting.
 2. Simple Cloud Discovery instead of using Eureka.
 3. Web Filtering and ordering in Gateway.
 4. Traffic-control based on IP headers to deny access.
 5. Websocket and load-balancing on websocket.
 6. Resource routing.
 7. File upload and controlling file limitation access.
+8. Enabling CORS.
+9. Disable Dynamic resource control by adding spring.cloud.config.enabled = false in bootstrap.yml
+
 
 ## Webclient
 Web client is using Webflux and are Docker Compose enabled.
@@ -56,3 +59,31 @@ docker-compose up -d
 
 1. Download SOAP UI.
 2. Import project from gw-demo\soapui-test\SOAPProject.xml
+
+## Getting Started or Running Program
+1. Change directory to /gw-demo/src/main/resources and open application.yml, modify 'spring.cloud.discovery.client.simple.instance.greeting-service(s).uri', and change "raspberrypi" to "localhost" or "127.0.0.1".
+
+2. Start gateway by executing:
+
+```
+cd gw-demo
+./gradlew bootRun
+```
+
+3. Try and do a curl GET on http://localhost:9000/api/v1/greetings/pt. *It should FAIL*
+
+4. Start webservices by either
+
+```
+## Method 1
+cd web-demo
+./gradlew bootRun
+#change web-demo/src/main/resources/application.yml, and change PORT to 8081.
+./gradlew bootRun
+
+## Method 2
+Run docker, see method above.
+
+## Method 3
+Run docker-compose
+```
