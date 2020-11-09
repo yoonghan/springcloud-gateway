@@ -1,8 +1,8 @@
 # Spring Cloud Gateway
 Testing spring cloud with integration of, without Netflix dependencies
-- Gateway
-- Load-balancer
-- Webflux (client)
+- Spring Gateway
+- Spring Load-balancer
+- Spring Webflux (client)
 
 ## Gateway configuration
 Gateway configuration takes these:
@@ -21,6 +21,14 @@ Gateway configuration takes these:
 *NOTES:* Load balancing is using health-check configuration and it's checked every 5seconds. Cached need to be disabled to allow Load balancing.
 
 *NOTES:* To change path for health-check modify spring.cloud.loadbalancer.health-check.path.default (or remove it)
+
+## Test proved
+1. Load-balancing via health-check, if "spring.cloud.loadbalancer.configurations: health-check" and are based on 5 seconds interval with program path /status as check. If reverting to round-robing, remove "spring.cloud.loadbalancer.configurations" in application.yml. No Zuul is used.
+2. Web Filtering and ordering in Gateway.
+3. Traffic-control based on IP headers to deny access.
+4. Websocket and load-balancing on websocket.
+5. Resource routing.
+6. File upload and controlling file limitation access.
 
 ## Webclient
 Web client is using Webflux and are Docker Compose enabled.
