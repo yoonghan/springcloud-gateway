@@ -24,11 +24,12 @@ Gateway configuration takes these:
 
 ## Test proved
 1. Load-balancing via health-check, if "spring.cloud.loadbalancer.configurations: health-check" and are based on 5 seconds interval with program path /status as check. If reverting to round-robing, remove "spring.cloud.loadbalancer.configurations" in application.yml. No Zuul is used.
-2. Web Filtering and ordering in Gateway.
-3. Traffic-control based on IP headers to deny access.
-4. Websocket and load-balancing on websocket.
-5. Resource routing.
-6. File upload and controlling file limitation access.
+2. Simple Cloud Discovery instead of using Eureka.
+3. Web Filtering and ordering in Gateway.
+4. Traffic-control based on IP headers to deny access.
+5. Websocket and load-balancing on websocket.
+6. Resource routing.
+7. File upload and controlling file limitation access.
 
 ## Webclient
 Web client is using Webflux and are Docker Compose enabled.
