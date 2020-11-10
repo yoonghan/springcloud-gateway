@@ -3,8 +3,8 @@ server:
 
 tgcs:
   allowedips:
-    - 127.0.0.1
-    - localhost
+    - 192.1.0.1
+    - home
 
 spring:
   cloud:
@@ -23,7 +23,7 @@ spring:
         enabled: false
       health-check:
         path:
-          default: /actuator/health
+          default: /status
         interval: 5000
     gateway:
       routes:
@@ -45,7 +45,7 @@ spring:
         uri: lb:ws://greetings-service
         predicates:
           - Path=/socket-io/**
-      - id: content_routing
+      - id: content_routing #media harddisk local folder..
         path: /images/*
         uri: https://www.flickr.com/photos
         predicates:

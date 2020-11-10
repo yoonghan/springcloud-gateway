@@ -15,6 +15,7 @@ Gateway configuration takes these:
 | /upload | POST | File uploading | File limitation control |
 | /socket-io/event-emitter | Websocket | Test websocket | Test websocket, use this site "https://www.websocket.org/echo.html" and enter ws://{hostname}:{port} |
 | /images/* | GET | Routing images to another location | Routing image, redirect |
+| /static/report/sample.txt or /static/images/pictoral.jpg | GET | Static file access, Add header "Token" = "abc123" to request |
 
 *NOTES:* Filter enables for ip address
 
@@ -32,6 +33,7 @@ Gateway configuration takes these:
 7. File upload and controlling file limitation access.
 8. Enabling CORS.
 9. Disable Dynamic resource control by adding spring.cloud.config.enabled = false in bootstrap.yml
+10. Serving of static files
 
 
 ## Webclient
