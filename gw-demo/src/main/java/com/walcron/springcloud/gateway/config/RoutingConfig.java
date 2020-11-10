@@ -25,6 +25,9 @@ public class RoutingConfig {
         /**For local files use[S]
         return RouterFunctions.resources("/portal/**", new FileSystemResource("D:\\website\\spring-cloud-static-resource/"));
          [E]**/
+        /** Not preferred method in the end, there is this issue of no cache control.
+         * https://stackoverflow.com/questions/58661768/how-to-serve-static-resources-using-webflux-but-with-cache-support
+         * **/
         log.info("run resource check");
         return RouterFunctions
                 .resources("/static/**", new ClassPathResource("static/"))
