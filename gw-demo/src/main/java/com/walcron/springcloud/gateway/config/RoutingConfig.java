@@ -1,14 +1,13 @@
 package com.walcron.springcloud.gateway.config;
 
 import com.walcron.springcloud.gateway.filter.ResourceFilter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.server.ServerWebExchange;
@@ -18,7 +17,7 @@ import java.util.function.Predicate;
 @Configuration("routing-config")
 public class RoutingConfig {
 
-    Log log = LogFactory.getLog(this.getClass());
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**Resources are separated hence required own filter**/
     @Bean
@@ -26,6 +25,7 @@ public class RoutingConfig {
         /**For local files use[S]
         return RouterFunctions.resources("/portal/**", new FileSystemResource("D:\\website\\spring-cloud-static-resource/"));
          [E]**/
+        log.info("run resource check");
         return RouterFunctions
                 .resources("/static/**", new ClassPathResource("static/"))
                 .filter(new ResourceFilter());
