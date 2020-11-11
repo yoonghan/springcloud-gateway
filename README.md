@@ -61,6 +61,11 @@ docker-compose up -d
 
 1. Download SOAP UI.
 2. Import project from gw-demo\soapui-test\SOAPProject.xml
+3. Or use apache load test (without an idea if there are errors)
+
+```
+ab -n 100 -c 10 http://127.0.0.1:9000/api/v1/
+```
 
 ## Getting Started or Running Program
 1. Change directory to /gw-demo/src/main/resources and open application.yml, modify 'spring.cloud.discovery.client.simple.instance.greeting-service(s).uri', and change "raspberrypi" to "localhost" or "127.0.0.1".
