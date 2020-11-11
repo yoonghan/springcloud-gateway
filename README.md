@@ -55,7 +55,7 @@ docker-compose up -d
 #docker-compose down
 ```
 
-*NOTES:* Used actuator, where the url http://{hostname}:{port}/actuator/health returns the server status.
+*NOTES:* Used actuator, where the url http://{hostname}:{port}/actuator/health returns the server status for gateway health check.. There is also http://{hostname}:{port}/status to reply for gateway health check. Remove "path.default" from spring.cloud.loadbalancer.health-check and it will point to /actuator/health.
 
 ## Load Test and Test Suite
 
