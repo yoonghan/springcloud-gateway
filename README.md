@@ -33,7 +33,7 @@ Gateway configuration takes these:
 7. File upload and controlling file limitation access.
 8. Enabling CORS.
 9. Disable Dynamic resource control by adding spring.cloud.config.enabled = false in bootstrap.yml
-10. Serving of static files
+10. Serving of static files. (Does not address caching resources, would think running another microservice is better.)
 
 
 ## Webclient
